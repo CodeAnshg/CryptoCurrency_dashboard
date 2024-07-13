@@ -5,7 +5,8 @@ function App() {
 
   return (
     <>
-      <h1>s</h1>
+
+      <h1>you can start the project</h1>
     </>
   )
 }
