@@ -5,8 +5,7 @@ function App() {
 
   return (
     <>
-
-      <h1>you can start the project</h1>
+    <h2>yash</h2>
     </>
   )
 }
