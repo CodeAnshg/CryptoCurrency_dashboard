@@ -1,12 +1,12 @@
-
+import News from './News/News'
 import './App.css'
 
 function App() {
 
   return (
     <>
+    <News/>
 
-      <h1>you can start the project</h1>
     </>
   )
 }
