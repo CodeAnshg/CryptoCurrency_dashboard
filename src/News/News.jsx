@@ -27,7 +27,7 @@ function News() {
       setIsMobileView(window.innerWidth < 768);
     };
 
-    handleResize(); // Initial check
+    handleResize(); 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
