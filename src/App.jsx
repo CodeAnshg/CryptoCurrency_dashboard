@@ -6,7 +6,6 @@ function App() {
 
   return (
     <>
-    <h2>yash</h2>
     <Coins/>
     </>
   )
