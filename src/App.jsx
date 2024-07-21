@@ -1,14 +1,21 @@
+import React, { useState } from "react";
+import Header from "./Components/Header";
+import Login from "./Components/Login";
+import "./App.css";
 
-import './App.css'
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-function App() {
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
 
   return (
-    <>
+    <div className="App">
+      <Header />
+      {!isLoggedIn && <Login onLogin={handleLogin} />}
+    </div>
+  );
+};
 
-      <h1>you can start the project</h1>
-    </>
-  )
-}
-
-export default App
+export default App;
