@@ -45,14 +45,14 @@ function Coins() {
                 <img src={item.image} alt={`${item.name} Image`} />
                 <pre>{item.symbol.toUpperCase()}</pre>
               </span>
-              <pre id='name'>{item.name}</pre>
-            </div>
-            <p>Current Price: ${item.current_price}</p>
-            <div>
+              <span>
+                <h1>{item.id.toUpperCase()}</h1>
+              </span>
+              <span>
+              <p>Current Price: ${item.current_price}</p>
               <p>Change 24H: <span className={item.price_change_percentage_24h >= 0 ? 'positive' : 'negative'}>{item.price_change_percentage_24h}%</span></p>
-            </div>
-            <div>
               <p>Total Volume: {item.total_volume}</p>
+              </span>
             </div>
           </div>
         ))}
@@ -73,4 +73,5 @@ function Coins() {
     </div>
   );
 }
+
 export default Coins;

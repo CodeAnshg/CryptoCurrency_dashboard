@@ -1,115 +1,129 @@
-/* Coins.css */
-
 .main {
-    padding: 20px;
-  }
-  
-  .coins {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .cards {
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    width: calc(25% - 20px);
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-    text-wrap: wrap;
-  }
-  
-  .cards:hover {
-    transform: translateY(-5px);
-  }
-  
-  .image {
-    padding: 10px;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .image img {
-    width: 50px;
-    height: 50px;
-  }
-  
-  #name {
-    font-size: 18px;
-    font-weight: bold;
-    text-wrap: wrap;
-  }
-  
-  .cards p {
-    margin: 10px 0;
-    text-align: center;
-  }
-  
-  .positive {
-    color: green;
-  }
-  
-  .negative {
-    color: red;
-  }
-  
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .pagination button {
-    padding: 10px 15px;
-    margin: 0 5px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .pagination button:hover {
-    background-color: #0056b3;
-  }
-  
-  .pagination button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .pagination .active {
-    background-color: #0056b3;
-  }
-  
-  @media (max-width: 1200px) {
-    .cards {
-      width: calc(33.33% - 20px);
-    }
-  }
-  
-  @media (max-width: 992px) {
-    .cards {
-      width: calc(50% - 20px);
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .cards {
-      width: calc(100% - 20px);
-    }
-    .pagination button{
-        display: none;
-    }
-    .pagination button:first-child, button:last-child{
-        display: block;
-    }
+  padding: 20px;
+}
 
+.coins {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.cards {
+  background-color: #2e2b5f;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: white;
+  width: 90%;
+  margin-bottom: 5px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.cards:hover {
+  transform: translateY(-5px);
+}
+
+
+.image {
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+.image h1{
+  text-wrap: wrap;
+  padding: 0vw 2vw 0vw 2vw;
+}
+
+.image img {
+  width: 50px;
+  height: 50px;
+}
+
+#name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cards p {
+  margin: 5px 0; /* Reduced margin */
+  text-align: center;
+}
+
+.positive {
+  color: rgb(36, 130, 36);
+}
+
+.negative {
+  color: red;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 10px 15px;
+  margin: 0 5px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination .active {
+  background-color: #0056b3;
+}
+
+.details {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px 0;
+}
+
+@media (max-width: 1200px) {
+  .cards {
+    width: 90%;
   }
-  
+}
+
+@media (max-width: 992px) {
+  .cards{
+    width: 100%;
+  }
+  .image h1{
+    margin: 0px;
+  }
+  .image{
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards {
+    width: 100%;
+  }
+  .pagination button {
+      display: none;
+  }
+  .pagination button:first-child, .pagination button:last-child {
+      display: block;
+  }
+}
