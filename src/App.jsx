@@ -18,9 +18,7 @@ const App = () => {
       <Header />
       {!isLoggedIn && <Login onLogin={handleLogin} />}
       <Coins/>
-
-
-<News/>
+      <News/>
 
     </div>
   );
