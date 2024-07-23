@@ -1,7 +1,7 @@
 import React from 'react';
 import './header.css';
 // import Header from "./Header.jsx";
-// import Login from "./Login.jsx";
+import {Link} from 'react-router-dom' 
 
 const Header = () => {
   return (
@@ -15,7 +15,7 @@ const Header = () => {
         <select className="header-currency-selector">
           <option value="INR">INR</option>
         </select>
-        <button className="header-login-button">Login</button>
+        <button className="header-login-button"> <Link to='/Login'>Login</Link> </button>
       </div>
     </header>
   );
