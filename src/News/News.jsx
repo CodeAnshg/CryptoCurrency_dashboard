@@ -58,9 +58,7 @@ function News() {
         </div>
       ) : (
         <>
-          <button className="load-button" onClick={fetchNews}>
-             News
-          </button>
+          
           <div className={`news-grid ${isMobileView ? 'mobile-view' : 'desktop-view'}`}>
             {news.map((item, key) => (
               <div className="news-card" key={key} onClick={() => handleImageClick(item)}>

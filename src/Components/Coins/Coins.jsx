@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import './Coins.css';
 import axios from 'axios';
+import './Coins.css';
 
-function Coins() {
+const Coins = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
-  const itemsPerPage = 12;
+  const [currency, setCurrency] = useState('USD');
+  const itemsPerPage = 10;
 
   useEffect(() => {
-    axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd")
+    axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}`)
       .then((response) => {
         setData(response.data);
       })
       .catch((error) => {
-        console.error("There was an error fetching the data!", error);
+        console.error("There was an error fetching data", error);
       });
-  }, []);
+  }, [currency]);
+
+  const handleCurrencyChange = (event) => {
+    const select = event.target.value;
+    setCurrency(select);
+  };
 
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
@@ -36,29 +42,50 @@ function Coins() {
   const currentData = data.slice(startIndex, endIndex);
 
   return (
-    <div className='main'>
-      <div className='coins'>
-        {currentData && currentData.map((item) => (
-          <div key={item.id} className='cards'>
-            <div className='image'>
-              <span>
-                <img src={item.image} alt={`${item.name} Image`} />
-                <pre>{item.symbol.toUpperCase()}</pre>
-              </span>
-              <span>
-                <h1>{item.id.toUpperCase()}</h1>
-              </span>
-              <span>
-              <p>Current Price: ${item.current_price}</p>
-              <p>Change 24H: <span className={item.price_change_percentage_24h >= 0 ? 'positive' : 'negative'}>{item.price_change_percentage_24h}%</span></p>
-              <p>Total Volume: {item.total_volume}</p>
-              </span>
-            </div>
-          </div>
-        ))}
+    <div className="coins-container">
+      <div className="coin-head">
+        <span>Coin Chart</span>
+        <select name="currency" id="currency" value={currency} onChange={handleCurrencyChange}>
+          <option value="USD">USD</option>
+          <option value="INR">INR</option>
+        </select>
       </div>
-      <div className='pagination'>
-        <button className='btnP' onClick={handlePrevPage} disabled={page === 1}>Previous</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Currency</th>
+            <th>Amount</th>
+            <th>Price in USD</th>
+            <th>Change 24h</th>
+          </tr>
+        </thead>
+        <tbody>
+          {currentData.map((item) => (
+            <tr key={item.id}>
+              <td>
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  style={{
+                    width: '20px',
+                    height: '20px',
+                    objectFit: 'cover',
+                    marginRight: '8px',
+                  }}
+                />
+                {item.symbol.toUpperCase()}
+              </td>
+              <td>{item.total_volume}</td>
+              <td>{item.current_price.toFixed(2)}</td>
+              <td className={item.price_change_percentage_24h >= 0 ? 'positive' : 'negative'}>
+                {item.price_change_percentage_24h.toFixed(2)}%
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className="pagination">
+        <button className="btnP" onClick={handlePrevPage} disabled={page === 1}>Previous</button>
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index + 1}
@@ -68,10 +95,10 @@ function Coins() {
             {index + 1}
           </button>
         ))}
-        <button className='btnP' onClick={handleNextPage} disabled={page === totalPages}>Next</button>
+        <button className="btnP" onClick={handleNextPage} disabled={page === totalPages}>Next</button>
       </div>
     </div>
   );
-}
+};
 
 export default Coins;

@@ -1,27 +1,23 @@
-import React, { useState } from "react";
-import Header from "./Components/Header";
-import Login from "./Components/Login";
-import News from './News/News'
+import React from "react";
+import Header from "./Components/Header/Header";
+import News from './News/News';
 import './App.css'
+import { BrowserRouter as Router , Route, Routes } from "react-router-dom";
 import Coins from './Components/Coins/Coins'
+import Login from "./Components/Login/Login";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-
+  
   return (
-    <div className="App">
-      <Header />
-      {!isLoggedIn && <Login onLogin={handleLogin} />}
+    <Router>
+      <Header/>
       <Coins/>
       <News/>
-
-    </div>
+      <Routes>
+        <Route path="/Login" element={<Login/>}/>
+      </Routes>
+    </Router>
   );
 };
 
-export default App
+export default App;
