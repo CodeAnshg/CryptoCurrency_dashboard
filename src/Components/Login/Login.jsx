@@ -1,53 +1,40 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './login.css'
+import './login.css';
+
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Call API or perform login logic here
-    // For demonstration purposes, we'll just alert the credentials
-    alert(`Email: ${email}, Password: ${password}`);
-  };
+  const toggleModal = () => setShowModal(!showModal);
+  const switchMode = () => setIsLogin(!isLogin);
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <label>Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="example@example.com"
-            />
+    <div className="page-container">
+      <button className="open-modal-btn" onClick={toggleModal}>
+        {isLogin ? 'Login' : 'Sign Up'}
+      </button>
+
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close-btn" onClick={toggleModal}>&times;</span>
+            <h2>{isLogin ? 'Login' : 'Sign Up'}</h2>
+            <form>
+              <input type="text" className="login-input" placeholder="Username" required />
+              <input type="password" className="login-input" placeholder="Password" required />
+              {!isLogin && <input type="email" className="login-input" placeholder="Email" required />}
+              <button type="submit" className="login-btn">{isLogin ? 'Login' : 'Sign Up'}</button>
+            </form>
+            <p>
+              {isLogin ? 'Don’t have an account? ' : 'Already have an account? '}
+              <button className="switch-btn" onClick={switchMode}>
+                {isLogin ? 'Sign Up' : 'Login'}
+              </button>
+            </p>
           </div>
-          <div className="input-group">
-            <label>Password</label>
-            <input
-              type={showPassword ? 'text' : 'password'}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="●●●●●●●●"
-            />
-            <span className="show-password" onClick={() => setShowPassword(!showPassword)}>
-              {showPassword ? 'Hide' : 'Show'}
-            </span>
-          </div>
-          {error && <div className="error">{error}</div>}
-          <button type="submit">Login</button>
-          <p>
-            Don't have an account? <Link to="/register">Register</Link>
-          </p>
-        </form>
-      </div>
+        </div>
+      )}
     </div>
   );
 };
