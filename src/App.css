@@ -1,0 +1,8 @@
+.app-main{
+    display: flex;
+    flex-wrap: wrap;
+}
+.getStarted{
+    background-image: url(https://ibb.co/cvDz1v1);
+    height: 1000%;
+}

@@ -41,6 +41,78 @@ const Coins = () => {
   const endIndex = startIndex + itemsPerPage;
   const currentData = data.slice(startIndex, endIndex);
 
+  const renderPaginationButtons = () => {
+    const buttons = [];
+
+    buttons.push(
+      <button
+        key={1}
+        className={page === 1 ? 'active' : ''}
+        onClick={() => handlePageChange(1)}
+      >
+        1
+      </button>
+    );
+
+    if (page > 3) {
+      buttons.push(<span key="dots1">...</span>);
+    }
+
+    if (page > 2) {
+      buttons.push(
+        <button
+          key={page - 1}
+          className={page === page - 1 ? 'active' : ''}
+          onClick={() => handlePageChange(page - 1)}
+        >
+          {page - 1}
+        </button>
+      );
+    }
+
+    if (page > 1 && page < totalPages) {
+      buttons.push(
+        <button
+          key={page}
+          className="active"
+          onClick={() => handlePageChange(page)}
+        >
+          {page}
+        </button>
+      );
+    }
+
+    if (page < totalPages - 1) {
+      buttons.push(
+        <button
+          key={page + 1}
+          className={page === page + 1 ? 'active' : ''}
+          onClick={() => handlePageChange(page + 1)}
+        >
+          {page + 1}
+        </button>
+      );
+    }
+
+    if (page < totalPages - 2) {
+      buttons.push(<span key="dots2">...</span>);
+    }
+
+    if (totalPages > 1) {
+      buttons.push(
+        <button
+          key={totalPages}
+          className={page === totalPages ? 'active' : ''}
+          onClick={() => handlePageChange(totalPages)}
+        >
+          {totalPages}
+        </button>
+      );
+    }
+
+    return buttons;
+  };
+
   return (
     <div className="coins-container">
       <div className="coin-head">
@@ -50,6 +122,7 @@ const Coins = () => {
           <option value="INR">INR</option>
         </select>
       </div>
+      <div className='coin-table'>
       <table>
         <thead>
           <tr>
@@ -84,17 +157,10 @@ const Coins = () => {
           ))}
         </tbody>
       </table>
+      </div>
       <div className="pagination">
         <button className="btnP" onClick={handlePrevPage} disabled={page === 1}>Previous</button>
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index + 1}
-            className={page === index + 1 ? 'active' : ''}
-            onClick={() => handlePageChange(index + 1)}
-          >
-            {index + 1}
-          </button>
-        ))}
+        {renderPaginationButtons()}
         <button className="btnP" onClick={handleNextPage} disabled={page === totalPages}>Next</button>
       </div>
     </div>

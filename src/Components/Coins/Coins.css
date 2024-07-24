@@ -8,7 +8,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
   height: 2vh;
-  width: 37.7vw;
+  width: 83%;
 }
 
 .coin-head span {
@@ -34,7 +34,7 @@
   outline: none;
 }
 .coins-container{
-  width: 70%;
+  width: 60%;
 }
 
 tbody {
@@ -101,24 +101,34 @@ tbody tr:hover {
 
 .pagination button {
   margin: 0 5px;
-  padding: 5px 10px;
+  padding: 3px 7px;
   border: none;
   border-radius: 10px;
-  background-color: #94a595; /* Green */
+  background-color: #94a595;
   color: white;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 14px;
   cursor: pointer;
 }
 
 .pagination .active {
-  background-color: #3e8e41; /* Darker green */
+  background-color: #3e8e41; 
 }
 
 .pagination .previous, .pagination .next {
-  background-color: #45a049; /* Slightly darker green */
+  background-color: #45a049; 
+}
+.coin-chart h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
+.coin-table{
+  width: 89.5%;
+}
+
+.coin-table table{
+  width: 100%;
+}
 
